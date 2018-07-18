@@ -1,8 +1,12 @@
 package com.elcom.trafficgoelcom;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
+import com.elcom.trafficgoelcom.drawmap.fragment.Fragment_choose_map;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -13,6 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private ImageButton imgKindMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        initWidget();
+        chooseKindMap();
     }
 
 
@@ -43,4 +50,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+    public void initWidget(){
+        imgKindMap = (ImageButton) findViewById(R.id.img_kind_map);
+
+    }
+
+    public void chooseKindMap(){
+        imgKindMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("choose", "kindMap");
+                Fragment_choose_map choose_map = new Fragment_choose_map();
+                choose_map.setArguments(bundle);
+
+            }
+        });
+    }
+
 }

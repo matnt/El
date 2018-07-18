@@ -14,5 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:src="@mipmap/ic_kind_map"
+        android:id="@+id/img_kind_map"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
