@@ -7,17 +7,21 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
             android:id="@+id/li_define"
             android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/img_define"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/img_define" />
             <TextView
                 android:layout_width="match_parent"
@@ -31,10 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/li_density"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical">
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/img_density"
                 android:src="@drawable/img_density"/>
             <TextView
@@ -49,10 +57,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/li_satelite"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical">
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/img_satelite"
                 android:src="@drawable/img_satelite"
                  />
@@ -68,10 +80,14 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:id="@+id/li_traffic"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_height="match_parent">
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
 
                 android:id="@+id/img_traffic"
                 android:src="@drawable/img_traffic"/>
@@ -87,6 +103,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
         <LinearLayout
@@ -96,7 +114,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/car"
+                android:id="@+id/img_car"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_car" />
@@ -115,7 +133,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/bike"
+                android:id="@+id/img_bike"
                 android:src="@mipmap/ic_bike"/>
             <TextView
                 android:layout_width="match_parent"

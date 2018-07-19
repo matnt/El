@@ -1,25 +1,31 @@
 package com.elcom.trafficgoelcom.drawmap.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.elcom.trafficgoelcom.MapsActivity;
 import com.elcom.trafficgoelcom.R;
+import com.elcom.trafficgoelcom.drawmap.interfaces.iMap;
 
 
-public class Fragment_choose_map extends Fragment {
+public class Fragment_choose_map extends DialogFragment {
+    private static final String TAG = "FragmentChooseMap";
 
-    private LinearLayout linear_define;
-    private LinearLayout linear_satelite;
-    private LinearLayout linear_traffic;
-    private LinearLayout linear_density;
-    private LinearLayout linear_car;
-    private LinearLayout linear_bike;
-    private LinearLayout linear_walk;
+    private ImageButton img_define;
+    private ImageButton img_satelite;
+    private ImageButton img_traffic;
+    private ImageButton img_density;
+    private ImageButton img_car;
+    private ImageButton img_bike;
+    private ImageButton img_walk;
+
+    public static iMap iMap;
     private int s;
 
 
@@ -38,73 +44,78 @@ public class Fragment_choose_map extends Fragment {
         return view;
     }
     private void initWidget(View view){
-        linear_define = view.findViewById(R.id.li_define);
-        linear_density = view.findViewById(R.id.li_density);
-        linear_satelite = view.findViewById(R.id.li_satelite);
-        linear_traffic = view.findViewById(R.id.li_traffic);
+        img_define = view.findViewById(R.id.img_define);
+        img_density = view.findViewById(R.id.img_density);
+        img_satelite = view.findViewById(R.id.img_satelite);
+        img_traffic = view.findViewById(R.id.img_traffic);
 
-        linear_bike =  view.findViewById(R.id.li_bike);
-        linear_car = view.findViewById(R.id.li_car);
-        linear_walk = view.findViewById(R.id.li_walk);
+        img_bike =  view.findViewById(R.id.img_bike);
+        img_car = view.findViewById(R.id.img_car);
+        img_walk = view.findViewById(R.id.img_walk);
 
     }
 
     public void choose_kind_map(){
 
-        linear_define.setOnClickListener(new View.OnClickListener() {
+        img_define.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = 1;
+                getDialog().cancel();
+                iMap.selectTypeMap(s);
             }
         });
         // density map will be designed by dev with density of traffic
-        linear_density.setOnClickListener(new View.OnClickListener() {
+        img_density.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = 2;
-                //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                getDialog().cancel();
+                iMap.selectTypeMap(s);
             }
         });
-        linear_satelite.setOnClickListener(new View.OnClickListener() {
+        img_satelite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = 3;
-                //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                getDialog().cancel();
+                iMap.selectTypeMap(s);
             }
         });
         // traffic map will be designed by dev with signpost
-        linear_traffic.setOnClickListener(new View.OnClickListener() {
+        img_traffic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = 4;
-                //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                getDialog().cancel();
+                iMap.selectTypeMap(s);
             }
         });
 
-        MapsActivity mapsActivity = new MapsActivity();
-        mapsActivity.chooseKindMap(s);
 
     }
 
 
     public void choose_vehicle(){
-        linear_walk.setOnClickListener(new View.OnClickListener() {
+        img_walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        linear_car.setOnClickListener(new View.OnClickListener() {
+        img_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        linear_bike.setOnClickListener(new View.OnClickListener() {
+        img_bike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
+
+        getDialog().dismiss();
     }
 }

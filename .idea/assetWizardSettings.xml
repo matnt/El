@@ -18,12 +18,31 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+<<<<<<< HEAD
+=======
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="0097a7" />
+                                                <entry key="paddingPercent" value="-5" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+>>>>>>> aedc83d824308185f7fa98541403bf26502c7565
                                       <entry key="clipartAsset">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+<<<<<<< HEAD
                                                 <entry key="url" value="jar:file:/E:/CAI_PHAN_MEM/android/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_directions_walk_black_24dp.xml" />
+=======
+                                                <entry key="url" value="jar:file:/E:/AndroidStudio/AD/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_my_location_black_24dp.xml" />
+>>>>>>> aedc83d824308185f7fa98541403bf26502c7565
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,9 +52,14 @@
                                   </option>
                                   <option name="values">
                                     <map>
+<<<<<<< HEAD
                                       <entry key="backgroundColor" value="000000" />
                                       <entry key="iconShape" value="NONE" />
                                       <entry key="outputName" value="ic_walk" />
+=======
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="outputName" value="ic_my_location" />
+>>>>>>> aedc83d824308185f7fa98541403bf26502c7565
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -56,6 +80,47 @@
             </PersistentState>
           </value>
         </entry>
+<<<<<<< HEAD
+=======
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/E:/AndroidStudio/AD/plugins/android/lib/android.jar!/images/material_design_icons/hardware/ic_keyboard_arrow_up_black_24dp.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="color" value="aa2557" />
+                            <entry key="outputName" value="ic_select_search" />
+                            <entry key="sourceFile" value="C:\Users\nsh96" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
+          </value>
+        </entry>
+>>>>>>> aedc83d824308185f7fa98541403bf26502c7565
       </map>
     </option>
   </component>
