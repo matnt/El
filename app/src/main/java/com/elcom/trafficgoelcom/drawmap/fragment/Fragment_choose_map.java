@@ -27,12 +27,13 @@ public class Fragment_choose_map extends Fragment {
     public View onCreateView( LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kind_map, container, false);
         initWidget(view);
-        String action = getArguments().getString("choose");
-        if (action.equals("kindMap")) {
-            choose_kind_map();
-            choose_vehicle();
-        }
-
+//        String action = getArguments().getString("choose");
+//        if (action.equals("kindMap")) {
+//            choose_kind_map();
+//            choose_vehicle();
+//        }
+        choose_kind_map();
+        choose_vehicle();
 
         return view;
     }

@@ -3,6 +3,8 @@ package com.elcom.trafficgoelcom;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -57,10 +59,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         imgKindMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("choose", "kindMap");
+//                Bundle bundle = new Bundle();
+//                bundle.putString("choose", "kindMap");
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 Fragment_choose_map choose_map = new Fragment_choose_map();
-                choose_map.setArguments(bundle);
+                transaction.add(R.id.rlt, choose_map);
+                transaction.commit();
+
+                //choose_map.setArguments(bundle);
 
             }
         });
