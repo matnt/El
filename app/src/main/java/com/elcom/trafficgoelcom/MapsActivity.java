@@ -28,7 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         initWidget();
-        chooseKindMap();
+
     }
 
 
@@ -52,15 +52,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void initWidget(){
-        imgKindMap = (ImageButton) findViewById(R.id.img_kind_map);
+        imgKindMap = findViewById(R.id.img_kind_map);
 
-    }
-
-    public void chooseKindMap(){
         imgKindMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Bundle bundle = new Bundle();
                 bundle.putString("choose", "kindMap");
                 Fragment_choose_map choose_map = new Fragment_choose_map();
@@ -68,6 +64,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
+
+
+    }
+
+    public void chooseKindMap(int s){
+        switch (s) {
+            case 1:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                break;
+            case 2:
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                break;
+            case 3:
+                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                break;
+            case 4:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                break;
+
+        }
     }
 
 }

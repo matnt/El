@@ -1,11 +1,7 @@
 package com.elcom.trafficgoelcom.drawmap.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +9,10 @@ import android.widget.LinearLayout;
 
 import com.elcom.trafficgoelcom.MapsActivity;
 import com.elcom.trafficgoelcom.R;
-import com.google.android.gms.maps.GoogleMap;
+
 
 public class Fragment_choose_map extends Fragment {
-    public GoogleMap mMap;
-    private LinearLayoutManager linearManager;
+
     private LinearLayout linear_define;
     private LinearLayout linear_satelite;
     private LinearLayout linear_traffic;
@@ -25,16 +20,15 @@ public class Fragment_choose_map extends Fragment {
     private LinearLayout linear_car;
     private LinearLayout linear_bike;
     private LinearLayout linear_walk;
-    private String s;
+    private int s;
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+    public View onCreateView( LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_kind_map, container, false);
         initWidget(view);
-
         String action = getArguments().getString("choose");
-        if (action == "kindMap") {
+        if (action.equals("kindMap")) {
             choose_kind_map();
             choose_vehicle();
         }
@@ -55,29 +49,25 @@ public class Fragment_choose_map extends Fragment {
     }
 
     public void choose_kind_map(){
-        Bundle bundle = new Bundle();
-        s = "";
-
 
         linear_define.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s = "MAP_TYPE_NORMAL";
-                //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                s = 1;
             }
         });
         // density map will be designed by dev with density of traffic
         linear_density.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s = "MAP_TYPE_HYBRID";
+                s = 2;
                 //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             }
         });
         linear_satelite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s = "MAP_TYPE_SATELLITE";
+                s = 3;
                 //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
             }
         });
@@ -85,11 +75,14 @@ public class Fragment_choose_map extends Fragment {
         linear_traffic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s = "MAP_TYPE_NORMAL";
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                s = 4;
+                //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             }
         });
-        bundle.putString("kindMap", s);
+
+        MapsActivity mapsActivity = new MapsActivity();
+        mapsActivity.chooseKindMap(s);
+
     }
 
 
