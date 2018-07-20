@@ -1,22 +1,23 @@
 package com.elcom.trafficgoelcom.drawmap.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
-import com.elcom.trafficgoelcom.MapsActivity;
 import com.elcom.trafficgoelcom.R;
 import com.elcom.trafficgoelcom.drawmap.interfaces.iMap;
+import com.elcom.trafficgoelcom.notificationstatus.activities.Fragment_notificationEarly;
 
 
 public class Fragment_choose_map extends DialogFragment {
     private static final String TAG = "FragmentChooseMap";
 
+    // widget
     private ImageButton img_define;
     private ImageButton img_satelite;
     private ImageButton img_traffic;
@@ -24,6 +25,8 @@ public class Fragment_choose_map extends DialogFragment {
     private ImageButton img_car;
     private ImageButton img_bike;
     private ImageButton img_walk;
+    private Button btnDistance;
+    private Button btnClock;
 
     public static iMap iMap;
     private int s;
@@ -31,15 +34,13 @@ public class Fragment_choose_map extends DialogFragment {
 
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_kind_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_choose_map, container, false);
         initWidget(view);
-//        String action = getArguments().getString("choose");
-//        if (action.equals("kindMap")) {
-//            choose_kind_map();
-//            choose_vehicle();
-//        }
+
         choose_kind_map();
         choose_vehicle();
+
+        henGio();
 
         return view;
     }
@@ -52,6 +53,9 @@ public class Fragment_choose_map extends DialogFragment {
         img_bike =  view.findViewById(R.id.img_bike);
         img_car = view.findViewById(R.id.img_car);
         img_walk = view.findViewById(R.id.img_walk);
+
+        btnClock = view.findViewById(R.id.btnClock);
+        btnDistance = view.findViewById(R.id.btnDistance);
 
     }
 
@@ -91,8 +95,6 @@ public class Fragment_choose_map extends DialogFragment {
                 iMap.selectTypeMap(s);
             }
         });
-
-
     }
 
 
@@ -117,5 +119,17 @@ public class Fragment_choose_map extends DialogFragment {
         });
 
         getDialog().dismiss();
+    }
+
+    public void henGio(){
+        btnClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().cancel();
+                Intent i= new Intent(getContext(),Fragment_notificationEarly.class);
+                startActivity(i);
+
+            }
+        });
     }
 }

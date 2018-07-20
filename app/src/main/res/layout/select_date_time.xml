@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/btnCancel"
+            android:text="Thoát"
+            android:layout_height="match_parent" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/btnSave"
+            android:text="Lưu"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/tvDate"
+            android:layout_weight="5"
+            android:textSize="20dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/img_date"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_date" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:id="@+id/tvTime"
+            android:textSize="20dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" />
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_time"
+            android:id="@+id/img_time"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Lặp lại"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/img_2"
+                android:src="@drawable/t2"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/t3"
+                android:id="@+id/img_3"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/t4"
+                android:id="@+id/img_4"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/t5"
+                android:id="@+id/img_5"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/t6"
+                android:id="@+id/img_6"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/t7"
+                android:id="@+id/img_7"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/s"
+                android:id="@+id/img_cn"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

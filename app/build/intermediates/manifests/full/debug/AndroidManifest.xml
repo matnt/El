@@ -56,6 +56,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.elcom.trafficgoelcom.notificationstatus.activities.Fragment_notificationEarly" />
+        <activity android:name="com.elcom.trafficgoelcom.notificationstatus.activities.Set_date_time_activity" />
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
