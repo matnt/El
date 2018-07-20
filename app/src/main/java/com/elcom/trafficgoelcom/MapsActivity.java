@@ -335,7 +335,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.hideSoftInputFromWindow(edt_search.getWindowToken(), 0);
-
                                 mAutoCompleteAdapter.ClearData();
                             }
 
