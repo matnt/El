@@ -1,13 +1,5 @@
 package com.elcom.trafficgoelcom;
 
-import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.widget.ImageButton;
-
-import com.elcom.trafficgoelcom.drawmap.fragment.Fragment_choose_map;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -20,30 +12,32 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
-import com.elcom.trafficgoelcom.drawmap.interfaces.iMap;
 import com.elcom.trafficgoelcom.selectpoint.adapter.AT_Adapter;
 import com.elcom.trafficgoelcom.selectpoint.adapter.RecyclerItemClickListener;
 import com.elcom.trafficgoelcom.selectpoint.fragment.frag_search;
 import com.elcom.trafficgoelcom.utils.TConfigs;
 import com.google.android.gms.common.ConnectionResult;
-
+import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -66,13 +60,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 import java.util.Map;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, iMap {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
-    private static final String TAG = "MapActivity";
     private GoogleMap mMap;
-
-    private FloatingActionButton imgKindMap;
-
     private LocationManager mLocationManager;
     private SupportMapFragment mapFragment;
     private FusedLocationProviderClient mFusedLocationProviderClient;
@@ -101,7 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected GoogleApiClient mGoogleApiClient;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +100,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
         buildGoogleApiClient();
         checkPermission();
         initWidget();
@@ -121,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         handleSearch();
 
-        Fragment_choose_map.iMap = this;
+
     }
 
 
@@ -293,23 +280,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     edt_search.setText("");
                     mAutoCompleteAdapter.ClearData();
                 }
-            }
-        });
-
-        imgKindMap = findViewById(R.id.img_kind_map);
-
-        imgKindMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Fragment_choose_map choose_map = new Fragment_choose_map();
-                choose_map.show(getSupportFragmentManager(), "FragmentChooseMap");
-
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                Fragment_choose_map choose_map = new Fragment_choose_map();
-//                transaction.add(R.id.rlt, choose_map);
-//                transaction.commit();
-
             }
         });
 
@@ -487,25 +457,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-
-
-    @Override
-    public void selectTypeMap(int s) {
-        switch (s) {
-            case 1:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                break;
-            case 2:
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                break;
-            case 3:
-                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                break;
-            case 4:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                break;
-
-        }
     }
 }

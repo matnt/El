@@ -167,6 +167,8 @@ public class AT_Adapter extends RecyclerView.Adapter<AT_Adapter.ViewHolder> impl
     }
 
     public void ClearData() {
+        mResultList=new ArrayList<>();
+
         mResultList.clear();
         notifyDataSetChanged();
     }
@@ -179,6 +181,7 @@ public class AT_Adapter extends RecyclerView.Adapter<AT_Adapter.ViewHolder> impl
 
         public ViewHolder(View itemView) {
             super(itemView);
+
             item_distance=itemView.findViewById(R.id.item_distance);
             item_name_place=itemView.findViewById(R.id.item_name_place);
             item_d_place=itemView.findViewById(R.id.item_d_place);

@@ -8,6 +8,10 @@ public class TConfigs {
     public static final int TIME_FASTEST_INTERVAL=5;
     public static final int REQUEST_CODE_PERMISSION=1000;
 
+    public static final int ZOOM_MAP_DEFAULT=15;
+
+    public static final int CODE_ACTIVITY_RESULT=10;
+
     public static final String API_NOT_CONNECTED = "Google API not connected";
     public static final String SOMETHING_WENT_WRONG = "OOPs!!! Something went wrong...";
     public static String PlacesTag = "Google Places Auto Complete";
