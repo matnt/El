@@ -1,12 +1,18 @@
 package com.elcom.trafficgoelcom;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Looper;
+import android.speech.RecognitionService;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -57,7 +63,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -125,7 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (!s.toString().equals("") && mGoogleApiClient.isConnected()) {
                     mAutoCompleteAdapter.getFilter().filter(s.toString());
                 } else if (!mGoogleApiClient.isConnected()) {
-                    Toast.makeText(getApplicationContext(), TConfigs.API_NOT_CONNECTED, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), TConfigs.API_NOT_CONNECTED, Toast.LENGTH_SHORT).show();
                     Log.e(TConfigs.PlacesTag, TConfigs.API_NOT_CONNECTED);
                 }
 
@@ -159,17 +168,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 if (places.getCount() == 1) {
                                     //Do the things here on Click.....
                                     LatLng latLng = places.get(0).getLatLng();
-
-                                    MarkerOptions markerOptions = new MarkerOptions();
-                                    markerOptions.position(latLng);
-                                    markerOptions.title(places.get(0).getName().toString());
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-
-                                    mCurrLocationMarker = mMap.addMarker(markerOptions);
-
-                                    //move map camera
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-
+                                    GoToLocation(latLng,1, places.get(0).getName().toString(),TConfigs.ZOOM_MAP_DEFAULT);
                                     if (flag_search == 1) {
                                         flag_search = flag_search * -1;
                                         ibtn_seach.setImageResource(R.drawable.ic_home_tab);
@@ -218,7 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new
                         LatLng(mLastLocation.getLatitude(),
-                        mLastLocation.getLongitude()), 15));
+                        mLastLocation.getLongitude()), TConfigs.ZOOM_MAP_DEFAULT));
             }
         });
 
@@ -283,6 +282,82 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        ibtn_voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+                try {
+                    startActivityForResult(intent, TConfigs.CODE_ACTIVITY_RESULT);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(MapsActivity.this, "Can't open voice!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TConfigs.CODE_ACTIVITY_RESULT) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> lstResult = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                edt_search.setText(lstResult.get(0));
+                if (lstResult.size() > 0) {
+                    Geocoder geocoder=new Geocoder(this);
+                    try {
+                        List<Address> list=geocoder.getFromLocationName(lstResult.get(0),1);
+                        if(list.size()>0){
+                            Address address=list.get(0);
+                            double lat=address.getLatitude();
+                            double lng=address.getLongitude();
+                            LatLng latLng= new LatLng(lat,lng);
+                            //Điểm mới search đến từ voice
+
+                            GoToLocation(latLng,1,"",TConfigs.ZOOM_MAP_DEFAULT);
+
+                            if(flag_search==1){
+                                flag_search = flag_search * -1;
+                                ibtn_seach.setImageResource(R.drawable.ic_home_tab);
+                                rl_search.setVisibility(View.GONE);
+
+                                Fragment fragment = fragmentManager.findFragmentById(R.id.content_search);
+                                android.support.v4.app.FragmentTransaction ft_add = fragmentManager.beginTransaction();
+                                ft_add.remove(fragment);
+                                ft_add.commit();
+
+                                //Ẩn bàn phím
+                                edt_search.setFocusableInTouchMode(false);
+                                edt_search.setFocusable(false);
+                                edt_search.requestFocus();
+
+                                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.hideSoftInputFromWindow(edt_search.getWindowToken(), 0);
+
+                                mAutoCompleteAdapter.ClearData();
+                            }
+
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    private void GoToLocation(LatLng latLng, int maker ,String place_name ,int zoomsize){
+        if(maker==1){
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            markerOptions.title(place_name);
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            mCurrLocationMarker = mMap.addMarker(markerOptions);
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomsize));
     }
 
     private void fullScreen() {
@@ -307,7 +382,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Location location = locationList.get(locationList.size() - 1);
                 mLastLocation = location;// Lưu vị trí cuối cùng
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, TConfigs.ZOOM_MAP_DEFAULT));
             }
         }
     };
