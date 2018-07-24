@@ -211,6 +211,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab_go = findViewById(R.id.fab_go);
         fab_my_location = findViewById(R.id.fab_my_location);
 
+        fab_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         //Nút về vị trí hiện tại
         fab_my_location.setOnClickListener(new View.OnClickListener() {
             @Override

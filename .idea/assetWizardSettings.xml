@@ -97,7 +97,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/E:/AndroidStudio/AD/plugins/android/lib/android.jar!/images/material_design_icons/hardware/ic_keyboard_arrow_up_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/E:/AndroidStudio/AD/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_directions_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -107,8 +107,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="aa2557" />
-                            <entry key="outputName" value="ic_select_search" />
+                            <entry key="color" value="01579b" />
+                            <entry key="outputName" value="ic_directions" />
                             <entry key="sourceFile" value="C:\Users\nsh96" />
                           </map>
                         </option>

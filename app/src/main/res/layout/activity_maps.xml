@@ -34,8 +34,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
-        android:src="@mipmap/ic_my_location"
-        app:backgroundTint="#1b24dc"
+        android:src="@drawable/ic_directions"
+        app:backgroundTint="#f55858"
         app:fabSize="normal" />
 
     <android.support.design.widget.FloatingActionButton
