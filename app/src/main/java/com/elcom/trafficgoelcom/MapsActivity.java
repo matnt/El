@@ -204,6 +204,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+
     private void initWidget() {
         rcv_result_search = findViewById(R.id.rcv_result_search);
         fragmentManager = getSupportFragmentManager();
